@@ -11,7 +11,7 @@
         </if>
     </sql>
 
-    <select id="loadColumnCount"
+    <select id="loadColumnCountBy"
             parameterType="com.ddmh.condition.ColumnCondition"
             resultType="java.lang.Integer">
         select count(1)
@@ -20,7 +20,7 @@
         <include refid="querySql"></include>
     </select>
 
-    <select id="loadPageColumnList"
+    <select id="loadPageColumnListBy"
             parameterType="com.ddmh.condition.ColumnCondition"
             resultType="com.ddmh.dto.ColumnDto">
         select
@@ -46,4 +46,8 @@
         order by ${sortName} ${order}
         limit #{start}, #{end}
     </select>
+
+    <update id="deleteById" parameterType="java.lang.String">
+        delete from table_logic_relation where id = #{id}
+    </update>
 </mapper>

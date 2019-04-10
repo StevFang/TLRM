@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddmh.mapper.ColumnAuditRecordMapper">
+    
+    <select id="loadCountBy"
+            parameterType="com.ddmh.condition.ColumnAuditRecordCondition"
+            resultType="java.lang.Integer">
+        select count(1)
+        from table_audit_record
+        where tlr_id = #{tlrId}
+    </select>
+
+    <select id="loadPageListBy"
+            parameterType="com.ddmh.condition.ColumnAuditRecordCondition"
+            resultType="com.ddmh.dto.ColumnAuditRecordDto">
+        select
+            id,
+            tlr_id as trlId,
+            update_meta as updateMeta,
+            before,
+            after,
+            update_sql as updateSql,
+            create_on as createOn
+        from table_audit_record
+        where tlr_id = #{tlrId}
+        order by ${sortName} ${order}
+        limit #{start}, #{end}
+    </select>
+    
+</mapper>

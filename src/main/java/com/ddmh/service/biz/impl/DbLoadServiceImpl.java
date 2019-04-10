@@ -1,7 +1,7 @@
-package com.ddmh.service.impl;
+package com.ddmh.service.biz.impl;
 
 import com.ddmh.mapper.DbMapper;
-import com.ddmh.service.DbLoadService;
+import com.ddmh.service.biz.DbLoadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;

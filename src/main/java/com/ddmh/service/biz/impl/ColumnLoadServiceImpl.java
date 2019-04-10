@@ -1,4 +1,4 @@
-package com.ddmh.service.impl;
+package com.ddmh.service.biz.impl;
 
 import com.ddmh.common.Pagination;
 import com.ddmh.condition.ColumnCondition;
@@ -7,7 +7,7 @@ import com.ddmh.enums.ColumnTypeEnum;
 import com.ddmh.enums.FlagEnum;
 import com.ddmh.enums.IndexTypeEnum;
 import com.ddmh.mapper.ColumnMapper;
-import com.ddmh.service.ColumnLoadService;
+import com.ddmh.service.biz.ColumnLoadService;
 import com.ddmh.utils.PaginationUtils;
 import com.ddmh.vo.ColumnVo;
 import com.google.common.collect.Lists;
@@ -32,13 +32,13 @@ public class ColumnLoadServiceImpl implements ColumnLoadService {
 
     @Override
     public Pagination<ColumnVo> loadColumnPageData(ColumnCondition columnCondition) {
-        int count = columnMapper.loadColumnCount(columnCondition);
+        int count = columnMapper.loadColumnCountBy(columnCondition);
 
         List<ColumnVo> columnVoList = Lists.newArrayList();
         if(count > 0){
             PaginationUtils.enrichMysqlPageStartAndEnd(columnCondition);
 
-            List<ColumnDto> columnDtoList = columnMapper.loadPageColumnList(columnCondition);
+            List<ColumnDto> columnDtoList = columnMapper.loadPageColumnListBy(columnCondition);
             // convert and enrich
             columnDtoList.forEach(columnDto -> columnVoList.add(convertDtoToVo(columnDto)));
         }

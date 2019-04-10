@@ -21,7 +21,7 @@ public interface ColumnMapper {
      * @param columnCondition
      * @return
      */
-    int loadColumnCount(ColumnCondition columnCondition);
+    int loadColumnCountBy(ColumnCondition columnCondition);
 
     /**
      * 获取 column 分页数据
@@ -29,5 +29,12 @@ public interface ColumnMapper {
      * @param columnCondition
      * @return
      */
-    List<ColumnDto> loadPageColumnList(ColumnCondition columnCondition);
+    List<ColumnDto> loadPageColumnListBy(ColumnCondition columnCondition);
+
+    /**
+     * 根据唯一标识删除记录
+     *
+     * @param id
+     */
+    void deleteById(String id);
 }

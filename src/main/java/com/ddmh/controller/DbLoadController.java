@@ -1,6 +1,6 @@
 package com.ddmh.controller;
 
-import com.ddmh.service.DbLoadService;
+import com.ddmh.service.biz.DbLoadService;
 import com.ddmh.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
