@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddmh.mapper.ColumnMapper">
+
+    <sql id="querySql">
+        and db_name = #{dbName}
+        and `table_name` = #{tableName}
+        <if test="columnName != null and columnName != '' ">
+            and `column_name` like concat('%', #{columnName}, '%')
+        </if>
+    </sql>
+
+    <select id="loadColumnCount"
+            parameterType="com.ddmh.condition.ColumnCondition"
+            resultType="java.lang.Integer">
+        select count(1)
+        from table_logic_relation
+        where 1 = 1
+        <include refid="querySql"></include>
+    </select>
+
+    <select id="loadPageColumnList"
+            parameterType="com.ddmh.condition.ColumnCondition"
+            resultType="com.ddmh.dto.ColumnDto">
+        select
+            id,
+            db_name as dbName,
+            `table_name` as tableName,
+            `column_name` as columnName,
+            column_type as columnType,
+            column_length as columnLength,
+            mapping_type as mappingType,
+            column_desc as columnDesc,
+            require_flag as requireFlag,
+            null_able as nullAble,
+            primary_key_flag as primaryKeyFlag,
+            index_flag as indexFlag,
+            index_type as indexType,
+            index_desc as indexDesc,
+            related_table as relatedTable,
+            related_table_field as relatedTableField
+        from table_logic_relation
+        where 1 = 1
+        <include refid="querySql"></include>
+        order by ${sortName} ${order}
+        limit #{start}, #{end}
+    </select>
+</mapper>

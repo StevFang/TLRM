@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ddmh.mapper.DbMapper">
+
+    <select id="loadDbList" resultType="java.lang.String">
+        select db_name
+        from table_logic_relation
+        group by db_name
+    </select>
+
+</mapper>
