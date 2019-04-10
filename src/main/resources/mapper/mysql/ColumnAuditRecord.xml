@@ -27,5 +27,29 @@
         order by ${sortName} ${order}
         limit #{start}, #{end}
     </select>
-    
+
+    <insert id="save"
+            parameterType="com.ddmh.dto.ColumnAuditRecordDto">
+        insert into table_audit_record
+        (id, tlr_id, update_meta, before, after, update_sql, create_on)
+        value
+        (#{id}, #{tlrId}, #{updateMeta}, #{before}, #{after}, #{updateSql}, #{createOn});
+    </insert>
+
+    <insert id="batchSave"
+            parameterType="com.ddmh.dto.ColumnAuditRecordDto">
+        insert into table_audit_record
+        (id, tlr_id, update_meta, before, after, update_sql, create_on)
+        values
+        <foreach collection="columnAuditRecordDtoList" item="columnAuditRecordDto" open="(" separator="," close=")">
+            #{columnAuditRecordDto.id},
+            #{columnAuditRecordDto.tlrId},
+            #{columnAuditRecordDto.updateMeta},
+            #{columnAuditRecordDto.before},
+            #{columnAuditRecordDto.after},
+            #{columnAuditRecordDto.updateSql},
+            #{columnAuditRecordDto.createOn}
+        </foreach>
+    </insert>
+
 </mapper>

@@ -30,4 +30,18 @@ public interface ColumnAuditRecordMapper {
      * @return
      */
     List<ColumnAuditRecordDto> loadPageListBy(ColumnAuditRecordCondition columnAuditRecordCondition);
+
+    /**
+     * 新增保存
+     *
+     * @param columnAuditRecordDto
+     */
+    void save(ColumnAuditRecordDto columnAuditRecordDto);
+
+    /**
+     * 批量新增保存
+     *
+     * @param columnAuditRecordDtoList
+     */
+    void batchSave(List<ColumnAuditRecordDto> columnAuditRecordDtoList);
 }

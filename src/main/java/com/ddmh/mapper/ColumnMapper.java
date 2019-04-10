@@ -37,4 +37,26 @@ public interface ColumnMapper {
      * @param id
      */
     void deleteById(String id);
+
+    /**
+     * 根据唯一标识查询记录
+     *
+     * @param id
+     * @return
+     */
+    ColumnDto findById(String id);
+
+    /**
+     * 新建保存
+     *
+     * @param columnDto
+     */
+    void save(ColumnDto columnDto);
+
+    /**
+     * 更新
+     *
+     * @param newColumnDto
+     */
+    void update(ColumnDto newColumnDto);
 }
