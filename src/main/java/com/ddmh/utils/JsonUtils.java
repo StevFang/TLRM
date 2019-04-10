@@ -11,9 +11,10 @@ import com.alibaba.fastjson.JSONObject;
 public class JsonUtils {
 
     public static Object success(Object object){
-        JSONObject jsonObject = JSONObject.parseObject(JSONObject.toJSONString(object));
+        JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", "0");
         jsonObject.put("message", "");
+        jsonObject.put("data", object);
         return jsonObject;
     }
 
