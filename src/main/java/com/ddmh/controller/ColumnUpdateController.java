@@ -29,7 +29,7 @@ public class ColumnUpdateController {
             return JsonUtils.error(checkResult);
         }
         columnModifyService.update(columnVo);
-        return JsonUtils.success(null);
+        return JsonUtils.success();
     }
 
     private String checkParams(ColumnVo columnVo) {

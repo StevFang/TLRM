@@ -21,7 +21,7 @@ public class ColumnAuditRecordVo implements Serializable {
 
     private String id;
 
-    private String tlrId;
+    private String columnId;
 
     private String updateMeta;
 

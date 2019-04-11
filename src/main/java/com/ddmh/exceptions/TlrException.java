@@ -1,4 +1,4 @@
-package com.ddmh.Exceptions;
+package com.ddmh.exceptions;
 
 /**
  * @author FBin

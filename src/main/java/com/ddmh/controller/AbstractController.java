@@ -19,8 +19,8 @@ public abstract class AbstractController {
         if(current == null){
             return "当前页不能为空！";
         }
-        if(current < 0){
-            return "当前页不能为负值！";
+        if(current < 1){
+            return "当前页不能为小于1的数！";
         }
 
         Integer pageSize = abstractCondition.getPageSize();

@@ -28,7 +28,7 @@ public class ColumnDeleteController {
             return JsonUtils.error(checkResult);
         }
         columnModifyService.deleteById(id);
-        return JsonUtils.success(null);
+        return JsonUtils.success();
     }
 
     private String checkParams(String id) {

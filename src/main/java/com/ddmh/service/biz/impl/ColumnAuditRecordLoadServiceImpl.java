@@ -55,7 +55,7 @@ public class ColumnAuditRecordLoadServiceImpl implements ColumnAuditRecordLoadSe
         String createOn = DateUtils.format(columnAuditRecordDto.getCreateOn(), DateUtils.Pattern.PATTERN_DATETIME_1);
         return ColumnAuditRecordVo.builder()
                 .id(columnAuditRecordDto.getId())
-                .tlrId(columnAuditRecordDto.getTlrId())
+                .columnId(columnAuditRecordDto.getColumnId())
                 .updateMeta(columnAuditRecordDto.getUpdateMeta())
                 .before(columnAuditRecordDto.getBefore())
                 .after(columnAuditRecordDto.getAfter())

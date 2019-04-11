@@ -37,9 +37,9 @@ public class ColumnAuditRecordLoadController extends AbstractController{
     }
 
     private String checkParams(ColumnAuditRecordCondition columnAuditRecordCondition) {
-        String trlId = columnAuditRecordCondition.getTlrId();
-        if(StringUtils.isBlank(trlId)){
-            return "trlId字段的值不能为空！";
+        String columnId = columnAuditRecordCondition.getColumnId();
+        if(StringUtils.isBlank(columnId)){
+            return "columnId字段的值不能为空！";
         }
 
         return super.checkParams(columnAuditRecordCondition);

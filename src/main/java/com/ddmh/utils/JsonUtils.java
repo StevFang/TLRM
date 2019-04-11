@@ -10,6 +10,10 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class JsonUtils {
 
+    public static Object success(){
+        return success(null);
+    }
+
     public static Object success(Object object){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", "0");

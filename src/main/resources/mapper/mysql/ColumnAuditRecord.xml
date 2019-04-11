@@ -8,7 +8,7 @@
             resultType="java.lang.Integer">
         select count(1)
         from table_audit_record
-        where tlr_id = #{tlrId}
+        where tlr_id = #{columnId}
     </select>
 
     <select id="loadPageListBy"
@@ -16,14 +16,14 @@
             resultType="com.ddmh.dto.ColumnAuditRecordDto">
         select
             id,
-            tlr_id as trlId,
+            tlr_id as columnId,
             update_meta as updateMeta,
             before,
             after,
             update_sql as updateSql,
             create_on as createOn
         from table_audit_record
-        where tlr_id = #{tlrId}
+        where tlr_id = #{columnId}
         order by ${sortName} ${order}
         limit #{start}, #{end}
     </select>
@@ -33,7 +33,7 @@
         insert into table_audit_record
         (id, tlr_id, update_meta, before, after, update_sql, create_on)
         value
-        (#{id}, #{tlrId}, #{updateMeta}, #{before}, #{after}, #{updateSql}, #{createOn});
+        (#{id}, #{columnId}, #{updateMeta}, #{before}, #{after}, #{updateSql}, #{createOn});
     </insert>
 
     <insert id="batchSave"
@@ -43,7 +43,7 @@
         values
         <foreach collection="columnAuditRecordDtoList" item="columnAuditRecordDto" open="(" separator="," close=")">
             #{columnAuditRecordDto.id},
-            #{columnAuditRecordDto.tlrId},
+            #{columnAuditRecordDto.columnId},
             #{columnAuditRecordDto.updateMeta},
             #{columnAuditRecordDto.before},
             #{columnAuditRecordDto.after},

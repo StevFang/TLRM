@@ -19,6 +19,6 @@ import java.io.Serializable;
 @Builder
 public class ColumnAuditRecordCondition extends AbstractCondition implements Serializable {
 
-    private String tlrId;
+    private String columnId;
 
 }

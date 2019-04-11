@@ -1,6 +1,6 @@
 package com.ddmh.service.biz.impl;
 
-import com.ddmh.Exceptions.TlrException;
+import com.ddmh.exceptions.TlrException;
 import com.ddmh.constant.FieldDefinitionConstant;
 import com.ddmh.dto.ColumnAuditRecordDto;
 import com.ddmh.dto.ColumnDto;
@@ -122,7 +122,7 @@ public class ColumnModifyServiceImpl implements ColumnModifyService {
                     // update sql to redesign
                     ColumnAuditRecordDto columnAuditRecordDto = ColumnAuditRecordDto.builder()
                             .id(CommonUtils.getId())
-                            .tlrId(oldColumnDto.getId())
+                            .columnId(oldColumnDto.getId())
                             .updateMeta(columnName)
                             .before(DataConvertUtils.getString(newValue))
                             .after(DataConvertUtils.getString(oldValue))
