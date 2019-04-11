@@ -39,6 +39,6 @@ public class RequestSingleParamHandlerMethodArgumentResolver implements HandlerM
         }
         JSONObject jsonObject = JSONObject.parseObject(sb.toString());
         String value = requestSingleParam.value();
-        return jsonObject.get(value);
+        return jsonObject.get(value) == null ? requestSingleParam.defaultValue() : jsonObject.get(value);
     }
 }
