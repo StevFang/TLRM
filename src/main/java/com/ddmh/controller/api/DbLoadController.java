@@ -1,4 +1,4 @@
-package com.ddmh.controller;
+package com.ddmh.controller.api;
 
 import com.ddmh.service.biz.DbLoadService;
 import com.ddmh.utils.JsonUtils;

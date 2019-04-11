@@ -1,4 +1,4 @@
-package com.ddmh.controller;
+package com.ddmh.controller.api;
 
 import com.ddmh.common.Pagination;
 import com.ddmh.condition.ColumnAuditRecordCondition;
