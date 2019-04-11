@@ -3,138 +3,29 @@
 <head>
     <meta name="viewport" content="width=device-width" charset="utf-8"/>
     <title>表逻辑关系 TLR</title>
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../static/css/bootstrap-table.min.css" rel="stylesheet"/>
-    <link href="../static/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/static/css/bootstrap-table.min.css" rel="stylesheet"/>
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet"/>
 
-    <script src="../static/js/jquery-3.3.1.min.js?v=20190409001"></script>
-    <script src="../static/js/bootstrap.min.js?v=20190409001"></script>
-    <script src="../static/js/plugins/bootstrap-table.min.js?v=20190409001"></script>
-    <script src="../static/js/plugins/bootstrap-table-zh-CN.min.js?v=20190409001"></script>
+    <script src="/static/js/plugins/jquery-3.3.1.min.js?v=20190409001"></script>
+    <script src="/static/js/plugins/bootstrap.min.js?v=20190409001"></script>
+    <script src="/static/js/plugins/bootstrap-table.min.js?v=20190409001"></script>
+    <script src="/static/js/plugins/bootstrap-table-zh-CN.min.js?v=20190409001"></script>
 
     <style>
-        #mytab thead {
+        #myTable thead {
             background: #5488c4;
         }
 
-        #mytab tr:nth-child(even) {
+        #myTable tr:nth-child(even) {
             background: #f4f8fb;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <table id="mytab" class="table table-hover"></table>
-</div>
-<script>
-    $('#mytab').bootstrapTable({
-        url: 'data2.json',
-        queryParams: "queryParams",
-        toolbar: "#toolbar",
-        sidePagination: "true",
-        striped: true, // 是否显示行间隔色
-        search : "true",
-        uniqueId: "ID",
-        pageSize: "5",
-        pagination: true, // 是否分页
-        sortable: true, // 是否启用排序
-        columns: [
-            {
-                field: 'id',
-                align: 'center',
-                width: 80,
-                formatter: function (value) {
-                    return '<input type="checkbox" data_id="'+value+'" />';
-                }
-            },
-            {
-                field: "dbName",
-                title: "数据库"
-            },
-            {
-                field: "tableName",
-                title: "数据表"
-            },
-            {
-                field: 'columnName',
-                title: '字段名'
-            },
-            {
-                field: 'columnType',
-                title: '字段类型'
-            },
-            {
-                field: "columnLength",
-                title: "字段长度"
-            },
-            {
-                field: "mappingType",
-                title: "映射类型"
-            },
-            {
-                field: 'columnDesc',
-                title: '字段描述'
-            },
-            {
-                field: "requiredFlag",
-                title: "必填"
-            },
-            {
-                field: 'nullAble',
-                title: "为空"
-            },
-            {
-                field: "primaryKeyFlag",
-                title: "是否主键"
-            },
-            {
-                field: "indexFlag",
-                title: "是否创建索引"
-            },
-            {
-                field: "indexType",
-                title: "索引类型"
-            },
-            {
-                field: "indexDesc",
-                title: "索引描述信息"
-            },
-            {
-                field: 'relatedTable',
-                title: "关联表"
-            },
-            {
-                field: 'relatedTableField',
-                title: "关联字段"
-            },
-            {
-                field: 'id',
-                title: '操作',
-                width: 120,
-                align: 'center',
-                formatter: function (value) {
-                    var result = "<a href='javascript:;' class='btn btn-xs blue' onclick=\"editViewById('" + value + "')\" " +
-                        "title='编辑'><i class='fa fa-pencil fa-lg'></i></a>";
-                    result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"deleteByIds('" + value + "')\" " +
-                        "title='删除'><i class='fa fa-trash-o fa-lg'></i></a>";
-                    return result;
-                }
-            }
-        ]
-    });
-
-    function editViewById(id) {
-
-        $('#mytab').bootstrapTable('refresh');
-    }
-
-    function deleteByIds(id) {
-
-        $('#mytab').bootstrapTable('refresh');
-    }
-
-</script>
-
-
+    <div class="container">
+        <table id="myTable" class="table table-hover"></table>
+    </div>
+    <script src="/static/js/index/table.js?v=20190412004"></script>
 </body>
 </html>

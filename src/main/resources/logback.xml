@@ -5,7 +5,7 @@
         debug="false" scan="true" scanPeriod="30 second">
 
     <property name="PROJECT" value="tlr" />
-    <property name="ROOT" value="E:/logs/${PROJECT}/" />
+    <property name="ROOT" value="D:/logs/${PROJECT}/" />
     <property name="FILESIZE" value="50MB" />
     <property name="MAXHISTORY" value="100" />
     <timestamp key="DATETIME" datePattern="yyyy-MM-dd HH:mm:ss" />
@@ -124,7 +124,7 @@
     <logger name="com.github.miemiedev.mybatis.paginator" level="INFO" additivity="false" />
 
     <!-- Logger 根目录 -->
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="DEBUG" />
         <appender-ref ref="ERROR" />
