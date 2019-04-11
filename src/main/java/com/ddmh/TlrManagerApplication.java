@@ -4,9 +4,7 @@ import com.ddmh.analyzer.RequestSingleParamHandlerMethodArgumentResolver;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.List;
@@ -18,7 +16,6 @@ import java.util.List;
  * @date 2019/04/09
  */
 @SpringBootApplication
-@EnableWebMvc
 @MapperScan(basePackages = "com.ddmh.mapper")
 public class TlrManagerApplication extends WebMvcConfigurerAdapter {
 

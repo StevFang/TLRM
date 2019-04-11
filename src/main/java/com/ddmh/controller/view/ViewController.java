@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @version 2019/4/11 16:55
  */
 @Controller
-@RequestMapping("/view")
 public class ViewController {
 
-    @RequestMapping("/index")
-    public String viewIndex(){
+    @RequestMapping("/")
+    public String index(){
         return "index";
     }
 
