@@ -1,5 +1,6 @@
 package com.ddmh.controller;
 
+import com.ddmh.annotation.RequestSingleParam;
 import com.ddmh.service.biz.TableLoadService;
 import com.ddmh.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class TableLoadController {
     private TableLoadService tableLoadService;
 
     @PostMapping("/list")
-    public Object loadTableList(String dbName){
+    public Object loadTableList(@RequestSingleParam("dbName") String dbName){
         List<String> tableList = tableLoadService.loadTableListByDbName(dbName);
         return JsonUtils.success(tableList);
     }

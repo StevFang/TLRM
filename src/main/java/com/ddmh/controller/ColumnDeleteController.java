@@ -1,5 +1,6 @@
 package com.ddmh.controller;
 
+import com.ddmh.annotation.RequestSingleParam;
 import com.ddmh.service.biz.ColumnModifyService;
 import com.ddmh.utils.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +23,7 @@ public class ColumnDeleteController {
     private ColumnModifyService columnModifyService;
 
     @PostMapping("/delete")
-    public Object addColumn(String id){
+    public Object addColumn(@RequestSingleParam("id") String id){
         String checkResult = checkParams(id);
         if(StringUtils.isNotBlank(checkResult)){
             return JsonUtils.error(checkResult);

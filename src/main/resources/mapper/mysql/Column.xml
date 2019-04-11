@@ -32,7 +32,7 @@
             column_length as columnLength,
             mapping_type as mappingType,
             column_desc as columnDesc,
-            require_flag as requireFlag,
+            required_flag as requireFlag,
             null_able as nullAble,
             primary_key_flag as primaryKeyFlag,
             index_flag as indexFlag,
@@ -63,7 +63,7 @@
             column_length as columnLength,
             mapping_type as mappingType,
             column_desc as columnDesc,
-            require_flag as requireFlag,
+            required_flag as requireFlag,
             null_able as nullAble,
             primary_key_flag as primaryKeyFlag,
             index_flag as indexFlag,
@@ -75,14 +75,15 @@
         where id = #{id}
     </select>
 
+
     <insert id="save" parameterType="com.ddmh.dto.ColumnDto">
         insert into table_logic_relation
         (id, db_name, `table_name`, `column_name`, column_type, column_length, mapping_type, column_desc,
-        require_flag, null_able, primary_key_flag, index_type, index_desc,
+        required_flag, null_able, primary_key_flag, index_flag, index_type, index_desc,
         related_table, related_table_field)
         value
         (#{id}, #{dbName}, #{tableName}, #{columnName}, #{columnType}, #{columnLength}, #{mappingType},
-        #{columnDesc}, #{requireFlag}, #{nullAble}, #{primaryKeyFlag}, #{indexType}, #{indexDesc},
+        #{columnDesc}, #{requireFlag}, #{nullAble}, #{primaryKeyFlag}, #{indexFlag}, #{indexType}, #{indexDesc},
         #{relatedTable}, #{relatedTableField});
     </insert>
 
@@ -98,6 +99,7 @@
             required_flag = #{requiredFlag},
             null_able = #{nullAble},
             primary_key_flag = #{primaryKeyFlag},
+            index_flag = #{indexFlag},
             index_type = #{indexType},
             index_desc = #{indexDesc},
             related_table = #{relatedTable},
@@ -117,7 +119,7 @@
             column_length as columnLength,
             mapping_type as mappingType,
             column_desc as columnDesc,
-            require_flag as requireFlag,
+            required_flag as requireFlag,
             null_able as nullAble,
             primary_key_flag as primaryKeyFlag,
             index_flag as indexFlag,

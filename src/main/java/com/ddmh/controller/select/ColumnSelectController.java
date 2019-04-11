@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,7 @@ public class ColumnSelectController {
     private ColumnLoadService columnLoadService;
 
     @PostMapping("/column")
-    public Object loadTableData(ColumnQueryCondition columnQueryCondition){
+    public Object loadTableData(@RequestBody ColumnQueryCondition columnQueryCondition){
         enrichColumnQueryCondition(columnQueryCondition);
 
         List<SelectItemDto> selectItemDtoList = Lists.newArrayList();
