@@ -105,4 +105,37 @@
         where id = #{id}
     </update>
 
+    <select id="loadColumnListBy"
+            parameterType="com.ddmh.condition.ColumnQueryCondition"
+            resultType="com.ddmh.dto.ColumnDto">
+        select
+            id,
+            db_name as dbName,
+            `table_name` as tableName,
+            `column_name` as columnName,
+            column_type as columnType,
+            column_length as columnLength,
+            mapping_type as mappingType,
+            column_desc as columnDesc,
+            require_flag as requireFlag,
+            null_able as nullAble,
+            primary_key_flag as primaryKeyFlag,
+            index_flag as indexFlag,
+            index_type as indexType,
+            index_desc as indexDesc,
+            related_table as relatedTable,
+            related_table_field as relatedTableField
+        from table_logic_relation
+        where 1 = 1
+        <include refid="querySql"></include>
+        <if test="searchText != null and searchText != '' ">
+            and `column_name` like concat('%', #{searchText}, '%')
+        </if>
+        <if test="selectedColumnName != null and selectedColumnName != '' ">
+            and `column_name` != #{selectedColumnName}
+        </if>
+        order by ${sortName} ${order}
+        limit #{start}, #{end}
+    </select>
+
 </mapper>

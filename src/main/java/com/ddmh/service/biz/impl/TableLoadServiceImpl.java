@@ -1,7 +1,9 @@
 package com.ddmh.service.biz.impl;
 
+import com.ddmh.condition.TableQueryCondition;
 import com.ddmh.mapper.TableMapper;
 import com.ddmh.service.biz.TableLoadService;
+import com.ddmh.utils.PaginationUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,18 @@ public class TableLoadServiceImpl implements TableLoadService {
     public List<String> loadTableListByDbName(String dbName) {
         if(StringUtils.isNotBlank(dbName)){
             List<String> tableList = tableMapper.loadTableListByDbName(dbName);
+            if(!CollectionUtils.isEmpty(tableList)){
+                return tableList;
+            }
+        }
+        return Collections.EMPTY_LIST;
+    }
+
+    @Override
+    public List<String> loadTableListBy(TableQueryCondition tableQueryCondition) {
+        if(StringUtils.isNotBlank(tableQueryCondition.getDbName())){
+            PaginationUtils.enrichMysqlPageStartAndEnd(tableQueryCondition);
+            List<String> tableList = tableMapper.loadTableListBy(tableQueryCondition);
             if(!CollectionUtils.isEmpty(tableList)){
                 return tableList;
             }

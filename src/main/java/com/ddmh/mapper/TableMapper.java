@@ -1,7 +1,6 @@
 package com.ddmh.mapper;
 
-import com.ddmh.condition.ColumnCondition;
-import com.ddmh.dto.ColumnDto;
+import com.ddmh.condition.TableQueryCondition;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,4 +22,11 @@ public interface TableMapper {
      */
     List<String> loadTableListByDbName(String dbName);
 
+    /**
+     * 模糊加载 table 列表
+     *
+     * @param tableQueryCondition
+     * @return
+     */
+    List<String> loadTableListBy(TableQueryCondition tableQueryCondition);
 }

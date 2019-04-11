@@ -2,6 +2,7 @@ package com.ddmh.service.biz.impl;
 
 import com.ddmh.common.Pagination;
 import com.ddmh.condition.ColumnCondition;
+import com.ddmh.condition.ColumnQueryCondition;
 import com.ddmh.dto.ColumnDto;
 import com.ddmh.enums.ColumnTypeEnum;
 import com.ddmh.enums.FlagEnum;
@@ -51,6 +52,12 @@ public class ColumnLoadServiceImpl implements ColumnLoadService {
                 .pages(pages)
                 .pageList(columnVoList)
                 .build();
+    }
+
+    @Override
+    public List<ColumnVo> loadColumnListBy(ColumnQueryCondition columnQueryCondition) {
+        List<ColumnDto> columnDtoList = columnMapper.loadColumnListBy(columnQueryCondition);
+        return null;
     }
 
     /**

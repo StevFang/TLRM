@@ -2,6 +2,7 @@ package com.ddmh.service.biz;
 
 import com.ddmh.common.Pagination;
 import com.ddmh.condition.ColumnCondition;
+import com.ddmh.condition.ColumnQueryCondition;
 import com.ddmh.vo.ColumnVo;
 
 import java.util.List;
@@ -21,4 +22,12 @@ public interface ColumnLoadService {
      * @return
      */
     Pagination<ColumnVo> loadColumnPageData(ColumnCondition columnCondition);
+
+    /**
+     * 模糊查询 db table 下的 column 列表
+     *
+     * @param columnQueryCondition
+     * @return
+     */
+    List<ColumnVo> loadColumnListBy(ColumnQueryCondition columnQueryCondition);
 }

@@ -8,6 +8,24 @@
         from table_logic_relation
         where db_name = #{dbName}
         group by `table_name`
+        order by `table_name` asc
+    </select>
+
+    <select id="loadTableListBy"
+            parameterType="com.ddmh.condition.TableQueryCondition"
+            resultType="java.lang.String">
+        select `table_name`
+        from table_logic_relation
+        where db_name = #{dbName}
+        <if test="searchText != null and searchText != '' ">
+            and `table_name` like concat('%', #{searchText},'%')
+        </if>
+        <if test="selectedTableName != null and selectedTableName != '' ">
+            and `table_name` != #{selectedTableName}
+        </if>
+        group by `table_name`
+        order by ${sortName} ${order}
+        limit #{start}, #{end}
     </select>
 
 </mapper>

@@ -1,5 +1,7 @@
 package com.ddmh.service.biz;
 
+import com.ddmh.condition.TableQueryCondition;
+
 import java.util.List;
 
 /**
@@ -17,5 +19,13 @@ public interface TableLoadService {
      * @return
      */
     List<String> loadTableListByDbName(String dbName);
+
+    /**
+     * 模糊查询db下的table列表
+     *
+     * @param tableQueryCondition
+     * @return
+     */
+    List<String> loadTableListBy(TableQueryCondition tableQueryCondition);
 
 }

@@ -1,6 +1,7 @@
 package com.ddmh.mapper;
 
 import com.ddmh.condition.ColumnCondition;
+import com.ddmh.condition.ColumnQueryCondition;
 import com.ddmh.dto.ColumnDto;
 import org.springframework.stereotype.Repository;
 
@@ -59,4 +60,12 @@ public interface ColumnMapper {
      * @param newColumnDto
      */
     void update(ColumnDto newColumnDto);
+
+    /**
+     * 模糊加载 column 列表
+     *
+     * @param columnQueryCondition
+     * @return
+     */
+    List<ColumnDto> loadColumnListBy(ColumnQueryCondition columnQueryCondition);
 }

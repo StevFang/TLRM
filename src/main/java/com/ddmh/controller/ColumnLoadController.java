@@ -43,6 +43,14 @@ public class ColumnLoadController extends AbstractController{
             return "未获取到tableName数据！";
         }
 
+        if(StringUtils.isBlank(columnCondition.getSortName())){
+            columnCondition.setSortName("column_name");
+        }
+
+        if(StringUtils.isBlank(columnCondition.getOrder())){
+            columnCondition.setOrder("asc");
+        }
+
         return super.checkParams(columnCondition);
     }
 
