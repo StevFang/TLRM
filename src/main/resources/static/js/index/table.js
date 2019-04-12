@@ -2,14 +2,8 @@
 var myTableHandler = $('#myTable').bootstrapTable({
     url: '/column/list',
     method: 'post',
-    queryParams: {
-        "dbName": "test01",
-        "tableName": "table01",
-        "current": this.pageNumber,
-        "pageSize": this.pageSize
-    },
     toolbar: "#toolbar",
-    sidePagination: "true",
+    sidePagination: "server",
     striped: true, // 是否显示行间隔色
     search : "true",
     uniqueId: "ID",
