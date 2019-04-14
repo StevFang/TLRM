@@ -133,9 +133,6 @@
         <if test="searchText != null and searchText != '' ">
             and `column_name` like concat('%', #{searchText}, '%')
         </if>
-        <if test="selectedColumnName != null and selectedColumnName != '' ">
-            and `column_name` != #{selectedColumnName}
-        </if>
         order by ${sortName} ${order}
         limit #{start}, #{end}
     </select>

@@ -56,6 +56,7 @@ public class ColumnLoadServiceImpl implements ColumnLoadService {
 
     @Override
     public List<ColumnVo> loadColumnListBy(ColumnQueryCondition columnQueryCondition) {
+
         List<ColumnDto> columnDtoList = columnMapper.loadColumnListBy(columnQueryCondition);
         return null;
     }

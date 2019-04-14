@@ -1,12 +1,9 @@
 package com.ddmh.controller.api;
 
-import com.ddmh.annotation.RequestSingleParam;
 import com.ddmh.service.biz.TableLoadService;
 import com.ddmh.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,8 +18,8 @@ public class TableLoadController {
     @Autowired
     private TableLoadService tableLoadService;
 
-    @PostMapping("/list")
-    public Object loadTableList(@RequestSingleParam("dbName") String dbName){
+    @GetMapping("/list")
+    public Object loadTableList(@RequestParam("dbName") String dbName){
         List<String> tableList = tableLoadService.loadTableListByDbName(dbName);
         return JsonUtils.success(tableList);
     }

@@ -21,6 +21,4 @@ public class ColumnQueryCondition extends AbstractCondition {
 
     private String searchText;
 
-    private String selectedColumnName;
-
 }

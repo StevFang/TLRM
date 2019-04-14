@@ -1,11 +1,11 @@
 package com.ddmh.controller.api;
 
-import com.ddmh.annotation.RequestSingleParam;
 import com.ddmh.service.biz.ColumnModifyService;
 import com.ddmh.utils.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +22,8 @@ public class ColumnDeleteController {
     @Autowired
     private ColumnModifyService columnModifyService;
 
-    @PostMapping("/delete")
-    public Object addColumn(@RequestSingleParam("id") String id){
+    @DeleteMapping("/delete/{id}")
+    public Object addColumn(@PathVariable("id") String id){
         String checkResult = checkParams(id);
         if(StringUtils.isNotBlank(checkResult)){
             return JsonUtils.error(checkResult);

@@ -7,10 +7,7 @@ import com.ddmh.utils.JsonUtils;
 import com.ddmh.vo.ColumnVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 表列定义列表加载
@@ -25,7 +22,7 @@ public class ColumnLoadController extends AbstractController{
     @Autowired
     private ColumnLoadService columnLoadService;
 
-    @PostMapping("/list")
+    @GetMapping("/list")
     public Object loadColumnList(@RequestBody ColumnCondition columnCondition){
         String checkResult = checkParams(columnCondition);
         if(StringUtils.isNotBlank(checkResult)){

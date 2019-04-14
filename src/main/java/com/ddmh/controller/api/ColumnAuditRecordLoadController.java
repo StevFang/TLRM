@@ -8,10 +8,7 @@ import com.ddmh.vo.ColumnAuditRecordVo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 列变更记录
@@ -27,7 +24,7 @@ public class ColumnAuditRecordLoadController extends AbstractController{
     @Autowired
     private ColumnAuditRecordLoadService columnAuditRecordLoadService;
 
-    @PostMapping("/list")
+    @GetMapping("/list")
     public Object loadColumnAuditRecordList(@RequestBody ColumnAuditRecordCondition columnAuditRecordCondition){
         String checkResult = checkParams(columnAuditRecordCondition);
         if(StringUtils.isNotBlank(checkResult)){

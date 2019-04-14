@@ -8,10 +8,7 @@ import com.ddmh.vo.ColumnVo;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,7 @@ public class ColumnSelectController {
     @Autowired
     private ColumnLoadService columnLoadService;
 
-    @PostMapping("/column")
+    @GetMapping("/column")
     public Object loadTableData(@RequestBody ColumnQueryCondition columnQueryCondition){
         enrichColumnQueryCondition(columnQueryCondition);
 
