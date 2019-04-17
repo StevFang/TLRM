@@ -23,7 +23,7 @@ public class ColumnLoadController extends AbstractController{
     private ColumnLoadService columnLoadService;
 
     @GetMapping("/list")
-    public Object loadColumnList(@RequestBody ColumnCondition columnCondition){
+    public Object loadColumnList(ColumnCondition columnCondition){
         String checkResult = checkParams(columnCondition);
         if(StringUtils.isNotBlank(checkResult)){
             return JsonUtils.error(checkResult);

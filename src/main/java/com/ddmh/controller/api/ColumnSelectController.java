@@ -24,7 +24,7 @@ public class ColumnSelectController {
     private ColumnLoadService columnLoadService;
 
     @GetMapping("/column")
-    public Object loadTableData(@RequestBody ColumnQueryCondition columnQueryCondition){
+    public Object loadTableData(ColumnQueryCondition columnQueryCondition){
         enrichColumnQueryCondition(columnQueryCondition);
 
         List<SelectItemDto> selectItemDtoList = Lists.newArrayList();

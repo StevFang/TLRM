@@ -25,7 +25,7 @@ public class ColumnAuditRecordLoadController extends AbstractController{
     private ColumnAuditRecordLoadService columnAuditRecordLoadService;
 
     @GetMapping("/list")
-    public Object loadColumnAuditRecordList(@RequestBody ColumnAuditRecordCondition columnAuditRecordCondition){
+    public Object loadColumnAuditRecordList(ColumnAuditRecordCondition columnAuditRecordCondition){
         String checkResult = checkParams(columnAuditRecordCondition);
         if(StringUtils.isNotBlank(checkResult)){
             return JsonUtils.error(checkResult);

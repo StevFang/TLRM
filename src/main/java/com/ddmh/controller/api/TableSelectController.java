@@ -23,7 +23,7 @@ public class TableSelectController {
     private TableLoadService tableLoadService;
 
     @GetMapping("/table")
-    public Object loadTableData(@RequestBody TableQueryCondition tableQueryCondition){
+    public Object loadTableData(TableQueryCondition tableQueryCondition){
         enrichTableQueryCondition(tableQueryCondition);
 
         List<SelectItemDto> selectItemDtoList = Lists.newArrayList();

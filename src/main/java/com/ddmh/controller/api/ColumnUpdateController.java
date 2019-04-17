@@ -6,7 +6,6 @@ import com.ddmh.vo.ColumnVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +23,7 @@ public class ColumnUpdateController {
     private ColumnModifyService columnModifyService;
 
     @PostMapping("/update")
-    public Object addColumn(@RequestBody ColumnVo columnVo){
+    public Object addColumn(ColumnVo columnVo){
         String checkResult = checkParams(columnVo);
         if(StringUtils.isNotBlank(checkResult)){
             return JsonUtils.error(checkResult);
