@@ -1,6 +1,6 @@
 package com.ddmh.utils;
 
-import com.ddmh.condition.AbstractCondition;
+import com.ddmh.condition.BasePageCondition;
 
 /**
  * @author Fbin
@@ -12,7 +12,7 @@ public class PaginationUtils {
         return count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
     }
 
-    public static void enrichMysqlPageStartAndEnd(AbstractCondition abstractCondition){
+    public static void enrichMysqlPageStartAndEnd(BasePageCondition abstractCondition){
         int start = abstractCondition.getPageSize() * (abstractCondition.getCurrent() - 1);
         abstractCondition.setStart(start);
         abstractCondition.setEnd(abstractCondition.getPageSize());

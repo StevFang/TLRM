@@ -30,4 +30,12 @@ public interface ColumnLoadService {
      * @return
      */
     List<ColumnVo> loadColumnListBy(ColumnQueryCondition columnQueryCondition);
+
+    /**
+     * 根据id获取字段的详细信息
+     *
+     * @param id
+     * @return
+     */
+    ColumnVo loadDetailBy(String id);
 }

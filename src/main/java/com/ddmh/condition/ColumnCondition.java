@@ -15,7 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = false)
-public class ColumnCondition extends AbstractCondition implements Serializable {
+public class ColumnCondition extends BasePageCondition implements Serializable {
 
     private String dbName;
 

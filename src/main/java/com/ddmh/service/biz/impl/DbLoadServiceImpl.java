@@ -2,6 +2,8 @@ package com.ddmh.service.biz.impl;
 
 import com.ddmh.mapper.DbMapper;
 import com.ddmh.service.biz.DbLoadService;
+import com.ddmh.vo.DbVo;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -22,10 +24,15 @@ public class DbLoadServiceImpl implements DbLoadService {
     private DbMapper dbMapper;
 
     @Override
-    public List<String> loadDbList() {
+    public List<DbVo> loadDbList() {
         List<String> dbList = dbMapper.loadDbList();
         if(!CollectionUtils.isEmpty(dbList)){
-            return dbList;
+            List<DbVo> dbVoList = Lists.newArrayList();
+            for(String dbName : dbList){
+                DbVo dbVo = DbVo.builder().name(dbName).build();
+                dbVoList.add(dbVo);
+            }
+            return dbVoList;
         }
         return Collections.EMPTY_LIST;
     }

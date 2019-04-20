@@ -17,7 +17,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ColumnAuditRecordCondition extends AbstractCondition implements Serializable {
+public class ColumnAuditRecordCondition extends BasePageCondition implements Serializable {
 
     private String columnId;
 

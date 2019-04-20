@@ -16,7 +16,7 @@ public class JsonUtils {
 
     public static Object success(Object object){
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("code", "0");
+        jsonObject.put("code", 0);
         jsonObject.put("message", "");
         jsonObject.put("data", object);
         return jsonObject;
@@ -24,7 +24,7 @@ public class JsonUtils {
 
     public static Object error(String errorMessage){
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("code", "-1");
+        jsonObject.put("code", -1);
         jsonObject.put("message", errorMessage);
         return jsonObject;
     }

@@ -6,6 +6,8 @@ package com.ddmh.exceptions;
  */
 public class TlrException extends RuntimeException {
 
+    private String msg;
+
     public TlrException(){
         super();
     }
@@ -16,10 +18,15 @@ public class TlrException extends RuntimeException {
 
     public TlrException(String message){
         super(message);
+        this.msg = message;
     }
 
     public TlrException(String message, Throwable e){
         super(message, e);
+    }
+
+    public String getMsg() {
+        return msg;
     }
 
 }

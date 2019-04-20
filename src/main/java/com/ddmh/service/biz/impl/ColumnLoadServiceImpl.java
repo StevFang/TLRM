@@ -13,9 +13,12 @@ import com.ddmh.utils.PaginationUtils;
 import com.ddmh.vo.ColumnVo;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -56,8 +59,25 @@ public class ColumnLoadServiceImpl implements ColumnLoadService {
 
     @Override
     public List<ColumnVo> loadColumnListBy(ColumnQueryCondition columnQueryCondition) {
-
         List<ColumnDto> columnDtoList = columnMapper.loadColumnListBy(columnQueryCondition);
+        if(!CollectionUtils.isEmpty(columnDtoList)){
+            List<ColumnVo> columnVoList = Lists.newArrayList();
+            for(ColumnDto columnDto : columnDtoList){
+                columnVoList.add(convertDtoToVo(columnDto));
+            }
+            return columnVoList;
+        }
+        return Collections.EMPTY_LIST;
+    }
+
+    @Override
+    public ColumnVo loadDetailBy(String id) {
+        if(StringUtils.isNotBlank(id)){
+            ColumnDto columnDto = columnMapper.findById(id);
+            if(columnDto != null){
+                return convertDtoToVo(columnDto);
+            }
+        }
         return null;
     }
 

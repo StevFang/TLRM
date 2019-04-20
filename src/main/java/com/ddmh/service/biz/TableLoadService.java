@@ -1,6 +1,7 @@
 package com.ddmh.service.biz;
 
 import com.ddmh.condition.TableQueryCondition;
+import com.ddmh.vo.TableVo;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface TableLoadService {
      * @param dbName 数据库名
      * @return
      */
-    List<String> loadTableListByDbName(String dbName);
+    List<TableVo> loadTableListByDbName(String dbName);
 
     /**
      * 模糊查询db下的table列表

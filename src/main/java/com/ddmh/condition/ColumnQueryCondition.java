@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ColumnQueryCondition extends AbstractCondition {
+public class ColumnQueryCondition extends BasePageCondition {
 
     private String dbName;
 

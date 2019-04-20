@@ -1,5 +1,7 @@
 package com.ddmh.service.biz;
 
+import com.ddmh.vo.DbVo;
+
 import java.util.List;
 
 /**
@@ -15,6 +17,6 @@ public interface DbLoadService {
      *
      * @return
      */
-    List<String> loadDbList();
+    List<DbVo> loadDbList();
 
 }

@@ -2,9 +2,10 @@ package com.ddmh.controller.api;
 
 import com.ddmh.common.Pagination;
 import com.ddmh.condition.ColumnCondition;
+import com.ddmh.controller.AbstractApiController;
 import com.ddmh.service.biz.ColumnLoadService;
-import com.ddmh.utils.JsonUtils;
 import com.ddmh.vo.ColumnVo;
+import com.ddmh.vo.ResponseVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +18,19 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/column")
-public class ColumnLoadController extends AbstractController{
+public class ColumnListController extends AbstractApiController {
 
     @Autowired
     private ColumnLoadService columnLoadService;
 
     @GetMapping("/list")
-    public Object loadColumnList(ColumnCondition columnCondition){
+    public ResponseVo loadColumnList(ColumnCondition columnCondition){
         String checkResult = checkParams(columnCondition);
         if(StringUtils.isNotBlank(checkResult)){
-            return JsonUtils.error(checkResult);
+            return sendFail(checkResult);
         }
         Pagination<ColumnVo> columnPageData = columnLoadService.loadColumnPageData(columnCondition);
-        return JsonUtils.parse(columnPageData);
+        return sendSuccess(columnPageData);
     }
 
     private String checkParams(ColumnCondition columnCondition) {
@@ -49,7 +50,7 @@ public class ColumnLoadController extends AbstractController{
             columnCondition.setOrder("asc");
         }
 
-        return super.checkParams(columnCondition);
+        return super.checkPageParams(columnCondition);
     }
 
 }

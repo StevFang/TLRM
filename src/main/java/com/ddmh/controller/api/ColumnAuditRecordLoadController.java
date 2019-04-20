@@ -2,6 +2,7 @@ package com.ddmh.controller.api;
 
 import com.ddmh.common.Pagination;
 import com.ddmh.condition.ColumnAuditRecordCondition;
+import com.ddmh.controller.AbstractApiController;
 import com.ddmh.service.biz.ColumnAuditRecordLoadService;
 import com.ddmh.utils.JsonUtils;
 import com.ddmh.vo.ColumnAuditRecordVo;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/column/audit/record")
-public class ColumnAuditRecordLoadController extends AbstractController{
+public class ColumnAuditRecordLoadController extends AbstractApiController {
 
     @Autowired
     private ColumnAuditRecordLoadService columnAuditRecordLoadService;
@@ -40,6 +41,6 @@ public class ColumnAuditRecordLoadController extends AbstractController{
             return "columnId字段的值不能为空！";
         }
 
-        return super.checkParams(columnAuditRecordCondition);
+        return super.checkPageParams(columnAuditRecordCondition);
     }
 }

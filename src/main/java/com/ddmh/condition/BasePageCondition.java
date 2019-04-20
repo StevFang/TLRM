@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @version 2019/4/9 23:03
  */
 @Data
-public abstract class AbstractCondition implements Serializable {
+public class BasePageCondition implements Serializable {
 
     private Integer current;
 
