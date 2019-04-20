@@ -1,4 +1,4 @@
-package com.ddmh.analyzer;
+package com.ddmh.config;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ddmh.annotation.RequestSingleParam;
