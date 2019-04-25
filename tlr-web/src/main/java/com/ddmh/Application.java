@@ -19,10 +19,10 @@ import java.util.List;
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan(basePackages = "com.ddmh.mapper")
-public class TlrManagerApplication extends WebMvcConfigurerAdapter {
+public class Application extends WebMvcConfigurerAdapter {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TlrManagerApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 	@Override
