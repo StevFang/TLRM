@@ -1,10 +1,10 @@
-package com.ddmh.service.biz.impl;
+package com.ddmh.service.impl;
 
 import com.ddmh.common.Pagination;
 import com.ddmh.condition.ColumnAuditRecordCondition;
 import com.ddmh.dto.ColumnAuditRecordDto;
 import com.ddmh.mapper.ColumnAuditRecordMapper;
-import com.ddmh.service.biz.ColumnAuditRecordLoadService;
+import com.ddmh.service.ColumnAuditRecordLoadService;
 import com.ddmh.utils.DateUtils;
 import com.ddmh.utils.PaginationUtils;
 import com.ddmh.vo.ColumnAuditRecordVo;

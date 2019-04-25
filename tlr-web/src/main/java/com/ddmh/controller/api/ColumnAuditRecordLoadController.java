@@ -3,7 +3,7 @@ package com.ddmh.controller.api;
 import com.ddmh.common.Pagination;
 import com.ddmh.condition.ColumnAuditRecordCondition;
 import com.ddmh.controller.AbstractApiController;
-import com.ddmh.service.biz.ColumnAuditRecordLoadService;
+import com.ddmh.service.ColumnAuditRecordLoadService;
 import com.ddmh.utils.JsonUtils;
 import com.ddmh.vo.ColumnAuditRecordVo;
 import lombok.extern.slf4j.Slf4j;

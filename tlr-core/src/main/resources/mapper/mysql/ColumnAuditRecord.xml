@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ddmh.mapper.ColumnAuditRecordMapper">
-    
+<mapper namespace="ColumnAuditRecordMapper">
+
     <select id="loadCountBy"
-            parameterType="com.ddmh.condition.ColumnAuditRecordCondition"
+            parameterType="ColumnAuditRecordCondition"
             resultType="java.lang.Integer">
         select count(1)
         from table_audit_record
@@ -12,8 +12,8 @@
     </select>
 
     <select id="loadPageListBy"
-            parameterType="com.ddmh.condition.ColumnAuditRecordCondition"
-            resultType="com.ddmh.dto.ColumnAuditRecordDto">
+            parameterType="ColumnAuditRecordCondition"
+            resultType="ColumnAuditRecordDto">
         select
             id,
             tlr_id as columnId,
@@ -29,7 +29,7 @@
     </select>
 
     <insert id="save"
-            parameterType="com.ddmh.dto.ColumnAuditRecordDto">
+            parameterType="ColumnAuditRecordDto">
         insert into table_audit_record
         (id, tlr_id, update_meta, before, after, update_sql, create_on)
         value
@@ -37,7 +37,7 @@
     </insert>
 
     <insert id="batchSave"
-            parameterType="com.ddmh.dto.ColumnAuditRecordDto">
+            parameterType="ColumnAuditRecordDto">
         insert into table_audit_record
         (id, tlr_id, update_meta, before, after, update_sql, create_on)
         values

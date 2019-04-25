@@ -1,4 +1,4 @@
-package com.ddmh.service.biz;
+package com.ddmh.service;
 
 import com.ddmh.vo.ColumnVo;
 

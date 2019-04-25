@@ -1,7 +1,7 @@
 package com.ddmh.controller.api;
 
 import com.ddmh.controller.AbstractApiController;
-import com.ddmh.service.biz.ColumnLoadService;
+import com.ddmh.service.ColumnLoadService;
 import com.ddmh.vo.ResponseVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

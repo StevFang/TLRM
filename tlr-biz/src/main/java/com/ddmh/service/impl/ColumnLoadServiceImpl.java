@@ -1,4 +1,4 @@
-package com.ddmh.service.biz.impl;
+package com.ddmh.service.impl;
 
 import com.ddmh.common.Pagination;
 import com.ddmh.condition.ColumnCondition;
@@ -8,7 +8,7 @@ import com.ddmh.enums.ColumnTypeEnum;
 import com.ddmh.enums.FlagEnum;
 import com.ddmh.enums.IndexTypeEnum;
 import com.ddmh.mapper.ColumnMapper;
-import com.ddmh.service.biz.ColumnLoadService;
+import com.ddmh.service.ColumnLoadService;
 import com.ddmh.utils.PaginationUtils;
 import com.ddmh.vo.ColumnVo;
 import com.google.common.collect.Lists;

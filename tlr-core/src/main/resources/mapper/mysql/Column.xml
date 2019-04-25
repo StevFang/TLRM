@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ddmh.mapper.ColumnMapper">
+<mapper namespace="ColumnMapper">
 
     <sql id="querySql">
         and db_name = #{dbName}
@@ -12,7 +12,7 @@
     </sql>
 
     <select id="loadColumnCountBy"
-            parameterType="com.ddmh.condition.ColumnCondition"
+            parameterType="ColumnCondition"
             resultType="java.lang.Integer">
         select count(1)
         from table_logic_relation
@@ -21,8 +21,8 @@
     </select>
 
     <select id="loadPageColumnListBy"
-            parameterType="com.ddmh.condition.ColumnCondition"
-            resultType="com.ddmh.dto.ColumnDto">
+            parameterType="ColumnCondition"
+            resultType="ColumnDto">
         select
             id,
             db_name as dbName,
@@ -53,7 +53,7 @@
 
     <select id="findById"
             parameterType="java.lang.String"
-            resultType="com.ddmh.dto.ColumnDto">
+            resultType="ColumnDto">
         select
             id,
             db_name as dbName,
@@ -76,7 +76,7 @@
     </select>
 
 
-    <insert id="save" parameterType="com.ddmh.dto.ColumnDto">
+    <insert id="save" parameterType="ColumnDto">
         insert into table_logic_relation
         (id, db_name, `table_name`, `column_name`, column_type, column_length, mapping_type, column_desc,
         required_flag, null_able, primary_key_flag, index_flag, index_type, index_desc,
@@ -87,7 +87,7 @@
         #{relatedTable}, #{relatedTableField});
     </insert>
 
-    <update id="update" parameterType="com.ddmh.dto.ColumnDto">
+    <update id="update" parameterType="ColumnDto">
         update table_logic_relation
         set db_name = #{dbName},
             `table_name` = #{tableName},
@@ -108,8 +108,8 @@
     </update>
 
     <select id="loadColumnListBy"
-            parameterType="com.ddmh.condition.ColumnQueryCondition"
-            resultType="com.ddmh.dto.ColumnDto">
+            parameterType="ColumnQueryCondition"
+            resultType="ColumnDto">
         select
             id,
             db_name as dbName,

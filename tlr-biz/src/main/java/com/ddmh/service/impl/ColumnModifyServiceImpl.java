@@ -1,16 +1,17 @@
-package com.ddmh.service.biz.impl;
+package com.ddmh.service.impl;
 
-import com.ddmh.exceptions.TlrException;
 import com.ddmh.constant.FieldDefinitionConstant;
 import com.ddmh.dto.ColumnAuditRecordDto;
 import com.ddmh.dto.ColumnDto;
 import com.ddmh.dto.FieldDefinitionDto;
+import com.ddmh.exception.TlrException;
 import com.ddmh.mapper.ColumnMapper;
-import com.ddmh.service.biz.ColumnModifyService;
+import com.ddmh.service.ColumnModifyService;
 import com.ddmh.service.spi.ColumnAuditRecordService;
 import com.ddmh.utils.CommonUtils;
 import com.ddmh.utils.DataConvertUtils;
 import com.ddmh.utils.DateUtils;
+import com.ddmh.utils.TlrExceptionAssertUtil;
 import com.ddmh.vo.ColumnVo;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
@@ -50,9 +51,9 @@ public class ColumnModifyServiceImpl implements ColumnModifyService {
     public void update(ColumnVo columnVo) {
         ColumnDto newColumnDto = convertToDto(columnVo);
         ColumnDto oldColumnDto = columnMapper.findById(columnVo.getId());
-        if(oldColumnDto == null){
-            throw new TlrException("待更新的数据未获取到！");
-        }
+
+        TlrExceptionAssertUtil.assertNotNull(oldColumnDto, "待更新的数据未获取到！");
+
         List<ColumnAuditRecordDto> columnAuditRecordDtoList = Lists.newArrayList();
         compareAndEnrichColumnAuditRecordDtoList(newColumnDto, oldColumnDto, columnAuditRecordDtoList);
 
