@@ -1,6 +1,7 @@
 package com.ddmh.condition;
 
 import lombok.Data;
+import org.apache.ibatis.type.Alias;
 
 import java.io.Serializable;
 
@@ -11,6 +12,7 @@ import java.io.Serializable;
  * @version 2019/4/9 23:03
  */
 @Data
+@Alias("BasePageCondition")
 public class BasePageCondition implements Serializable {
 
     private Integer current;

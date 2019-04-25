@@ -1,6 +1,7 @@
 package com.ddmh.condition;
 
 import lombok.*;
+import org.apache.ibatis.type.Alias;
 
 import java.io.Serializable;
 
@@ -15,6 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = false)
+@Alias("ColumnCondition")
 public class ColumnCondition extends BasePageCondition implements Serializable {
 
     private String dbName;
