@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false" scan="true" scanPeriod="30 second">
 
-    <property name="PROJECT" value="tlr" />
+    <property name="PROJECT" value="tlr-web" />
     <property name="ROOT" value="D:/logs/${PROJECT}/" />
     <property name="FILESIZE" value="50MB" />
     <property name="MAXHISTORY" value="100" />
