@@ -1,8 +1,8 @@
-package com.ddmh.service.biz.impl;
+package com.ddmh.service.impl;
 
 import com.ddmh.condition.TableQueryCondition;
 import com.ddmh.mapper.TableMapper;
-import com.ddmh.service.biz.TableLoadService;
+import com.ddmh.service.TableLoadService;
 import com.ddmh.utils.PaginationUtils;
 import com.ddmh.vo.TableVo;
 import com.google.common.collect.Lists;

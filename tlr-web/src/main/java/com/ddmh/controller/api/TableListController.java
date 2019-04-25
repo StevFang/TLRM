@@ -1,7 +1,7 @@
 package com.ddmh.controller.api;
 
 import com.ddmh.controller.AbstractApiController;
-import com.ddmh.service.biz.TableLoadService;
+import com.ddmh.service.TableLoadService;
 import com.ddmh.vo.ResponseVo;
 import com.ddmh.vo.TableVo;
 import org.springframework.beans.factory.annotation.Autowired;

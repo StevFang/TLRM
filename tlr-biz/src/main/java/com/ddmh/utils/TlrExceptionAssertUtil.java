@@ -1,6 +1,6 @@
 package com.ddmh.utils;
 
-import com.ddmh.exceptions.TlrException;
+import com.ddmh.exception.TlrException;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;

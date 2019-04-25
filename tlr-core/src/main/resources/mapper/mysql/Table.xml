@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ddmh.mapper.TableMapper">
+<mapper namespace="TableMapper">
 
     <select id="loadTableListByDbName" resultType="java.lang.String">
         select `table_name`
@@ -12,7 +12,7 @@
     </select>
 
     <select id="loadTableListBy"
-            parameterType="com.ddmh.condition.TableQueryCondition"
+            parameterType="TableQueryCondition"
             resultType="java.lang.String">
         select `table_name`
         from table_logic_relation

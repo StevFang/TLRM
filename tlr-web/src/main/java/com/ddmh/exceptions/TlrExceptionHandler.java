@@ -1,5 +1,6 @@
 package com.ddmh.exceptions;
 
+import com.ddmh.exception.TlrException;
 import com.ddmh.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;

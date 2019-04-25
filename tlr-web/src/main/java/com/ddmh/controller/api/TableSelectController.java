@@ -2,7 +2,7 @@ package com.ddmh.controller.api;
 
 import com.ddmh.condition.TableQueryCondition;
 import com.ddmh.dto.SelectItemDto;
-import com.ddmh.service.biz.TableLoadService;
+import com.ddmh.service.TableLoadService;
 import com.ddmh.utils.JsonUtils;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
