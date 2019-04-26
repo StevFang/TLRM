@@ -17,12 +17,12 @@ import java.util.List;
  * @date 2019/04/09
  */
 @SpringBootApplication
-@EnableTransactionManagement
 @MapperScan(basePackages = "com.ddmh.mapper")
-public class Application extends WebMvcConfigurerAdapter {
+@EnableTransactionManagement
+public class WebApplication extends WebMvcConfigurerAdapter {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(WebApplication.class, args);
 	}
 
 	@Override
