@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * 监听消息进行消费
+ *
+ * @author fbin
  */
 @Service
 public class ConsumerService {

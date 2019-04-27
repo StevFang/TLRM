@@ -11,16 +11,21 @@ import org.springframework.context.annotation.PropertySource;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * rocketmq配置
+ *
+ * @author fbin
+ */
 @PropertySource("classpath:config/rocketmq.properties")
-@ConfigurationProperties(value = "ddmh.rocketmq")
+@ConfigurationProperties("ddmh.rocketmq")
 @Configuration
 @Setter
 @Getter
 @ToString
 @Accessors(chain = true)
-public class RocketMQProperties {
-    private String namesrvAddr;
+public class RocketmqProperties {
+
+    private String nameSrvAddr;
     private String producerGroupName;
     private String transactionProducerGroupName;
     private String consumerGroupName;

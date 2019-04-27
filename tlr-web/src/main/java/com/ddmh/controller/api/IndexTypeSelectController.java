@@ -5,7 +5,6 @@ import com.ddmh.enums.IndexTypeEnum;
 import com.ddmh.utils.JsonUtils;
 import com.google.common.collect.Lists;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

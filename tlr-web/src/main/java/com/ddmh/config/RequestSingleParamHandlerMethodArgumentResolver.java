@@ -1,7 +1,7 @@
 package com.ddmh.config;
 
 import com.alibaba.fastjson.JSONObject;
-import com.ddmh.annotation.RequestSingleParam;
+import com.ddmh.config.annotation.RequestSingleParam;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;

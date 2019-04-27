@@ -1,4 +1,4 @@
-package com.ddmh.annotation;
+package com.ddmh.config.annotation;
 
 import java.lang.annotation.*;
 

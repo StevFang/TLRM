@@ -33,4 +33,12 @@ public class JsonUtils {
         return JSONObject.parseObject(JSONObject.toJSONString(object));
     }
 
+    public static String toJsonStr(Object object){
+        try{
+            return JSONObject.toJSONString(object);
+        }catch (Exception e){
+            return object.toString();
+        }
+    }
+
 }

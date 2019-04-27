@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>com.ddmh</groupId>
-            <artifactId>tlr-core</artifactId>
+            <artifactId>tlr-model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -39,14 +39,6 @@
             <version>0.9.4.Final</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.debezium/debezium-embedded -->
-        <dependency>
-            <groupId>io.debezium</groupId>
-            <artifactId>debezium-embedded</artifactId>
-            <version>0.9.4.Final</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/io.debezium/debezium-connector-mysql -->
         <dependency>
             <groupId>io.debezium</groupId>
@@ -55,5 +47,6 @@
         </dependency>
 
     </dependencies>
+
 
 </project>

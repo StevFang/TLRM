@@ -28,14 +28,16 @@ import java.util.stream.Collectors;
  *
  */
 @Configuration
-@EnableConfigurationProperties(RocketMQProperties.class)
+@EnableConfigurationProperties(RocketmqProperties.class)
 @Slf4j
-public class RocketMQConfiguration {
+public class RocketmqConfiguration {
 
     @Autowired
-    private RocketMQProperties rocketMQProperties;
+    private RocketmqProperties rocketmqProperties;
 
-    //事件监听
+    /**
+     * 事件监听
+     */
     @Autowired
     private ApplicationEventPublisher publisher = null;
 
@@ -48,18 +50,18 @@ public class RocketMQConfiguration {
      */
     @PostConstruct
     public void init() {
-        log.info("nameSrvAddr :{}", rocketMQProperties.getNamesrvAddr());
-        log.info("producerGroupName :{}", rocketMQProperties.getProducerGroupName());
-        log.info("consumerBatchMaxSize :{}", rocketMQProperties.getConsumerBatchMaxSize());
-        log.info("consumerGroupName :{}", rocketMQProperties.getConsumerGroupName());
-        log.info("consumerInstanceName :{}", rocketMQProperties.getConsumerInstanceName());
-        log.info("producerInstanceName :{}", rocketMQProperties.getProducerInstanceName());
-        log.info("producerTransInstanceName :{}", rocketMQProperties.getProducerTranInstanceName());
-        log.info("transactionProducerGroupName :{}", rocketMQProperties.getTransactionProducerGroupName());
-        log.info("consumerBroadcasting :{}", rocketMQProperties.isConsumerBroadcasting());
-        log.info("enableHistoryConsumer :{}", rocketMQProperties.isEnableHistoryConsumer());
-        log.info("enableOrderConsumer :{}", rocketMQProperties.isEnableOrderConsumer());
-        log.info("subscribe [0] :{}", rocketMQProperties.getSubscribe().get(0));
+        log.info("nameSrvAddr :{}", rocketmqProperties.getNameSrvAddr());
+        log.info("producerGroupName :{}", rocketmqProperties.getProducerGroupName());
+        log.info("consumerBatchMaxSize :{}", rocketmqProperties.getConsumerBatchMaxSize());
+        log.info("consumerGroupName :{}", rocketmqProperties.getConsumerGroupName());
+        log.info("consumerInstanceName :{}", rocketmqProperties.getConsumerInstanceName());
+        log.info("producerInstanceName :{}", rocketmqProperties.getProducerInstanceName());
+        log.info("producerTransInstanceName :{}", rocketmqProperties.getProducerTranInstanceName());
+        log.info("transactionProducerGroupName :{}", rocketmqProperties.getTransactionProducerGroupName());
+        log.info("consumerBroadcasting :{}", rocketmqProperties.isConsumerBroadcasting());
+        log.info("enableHistoryConsumer :{}", rocketmqProperties.isEnableHistoryConsumer());
+        log.info("enableOrderConsumer :{}", rocketmqProperties.isEnableOrderConsumer());
+        log.info("subscribe [0] :{}", rocketmqProperties.getSubscribe().get(0));
     }
 
     /**
@@ -70,9 +72,9 @@ public class RocketMQConfiguration {
     @Bean
     public DefaultMQProducer defaultProducer() throws MQClientException {
         DefaultMQProducer producer = new DefaultMQProducer(
-                rocketMQProperties.getProducerGroupName());
-        producer.setNamesrvAddr(rocketMQProperties.getNamesrvAddr());
-        producer.setInstanceName(rocketMQProperties.getProducerInstanceName());
+                rocketmqProperties.getProducerGroupName());
+        producer.setNamesrvAddr(rocketmqProperties.getNameSrvAddr());
+        producer.setInstanceName(rocketmqProperties.getProducerInstanceName());
         producer.setVipChannelEnabled(false);
         producer.setRetryTimesWhenSendAsyncFailed(10);
         producer.start();
@@ -88,9 +90,9 @@ public class RocketMQConfiguration {
     @Bean
     public TransactionMQProducer transactionProducer() throws MQClientException {
         TransactionMQProducer producer = new TransactionMQProducer(
-                rocketMQProperties.getTransactionProducerGroupName());
-        producer.setNamesrvAddr(rocketMQProperties.getNamesrvAddr());
-        producer.setInstanceName(rocketMQProperties
+                rocketmqProperties.getTransactionProducerGroupName());
+        producer.setNamesrvAddr(rocketmqProperties.getNameSrvAddr());
+        producer.setInstanceName(rocketmqProperties
                 .getProducerTranInstanceName());
         producer.setRetryTimesWhenSendAsyncFailed(10);
         // 事务回查最小并发数
@@ -112,27 +114,27 @@ public class RocketMQConfiguration {
     @Bean
     public DefaultMQPushConsumer pushConsumer() throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(
-                rocketMQProperties.getConsumerGroupName());
-        consumer.setNamesrvAddr(rocketMQProperties.getNamesrvAddr());
-        consumer.setInstanceName(rocketMQProperties.getConsumerInstanceName());
+                rocketmqProperties.getConsumerGroupName());
+        consumer.setNamesrvAddr(rocketmqProperties.getNameSrvAddr());
+        consumer.setInstanceName(rocketmqProperties.getConsumerInstanceName());
 
         //判断是否是广播模式
-        if (rocketMQProperties.isConsumerBroadcasting()) {
+        if (rocketmqProperties.isConsumerBroadcasting()) {
             consumer.setMessageModel(MessageModel.BROADCASTING);
         }
         //设置批量消费
-        consumer.setConsumeMessageBatchMaxSize(rocketMQProperties
-                .getConsumerBatchMaxSize() == 0 ? 1 : rocketMQProperties
+        consumer.setConsumeMessageBatchMaxSize(rocketmqProperties
+                .getConsumerBatchMaxSize() == 0 ? 1 : rocketmqProperties
                 .getConsumerBatchMaxSize());
 
         //获取topic和tag
-        List<String> subscribeList = rocketMQProperties.getSubscribe();
+        List<String> subscribeList = rocketmqProperties.getSubscribe();
         for (String sunScribe : subscribeList) {
             consumer.subscribe(sunScribe.split(":")[0], sunScribe.split(":")[1]);
         }
 
         // 顺序消费
-        if (rocketMQProperties.isEnableOrderConsumer()) {
+        if (rocketmqProperties.isEnableOrderConsumer()) {
             consumer.registerMessageListener(new MessageListenerOrderly() {
                 @Override
                 public ConsumeOrderlyStatus consumeMessage(
@@ -203,7 +205,7 @@ public class RocketMQConfiguration {
      * @return
      */
     private List<MessageExt> filterMessage(List<MessageExt> msgs) {
-        if (isFirstSub && !rocketMQProperties.isEnableHistoryConsumer()) {
+        if (isFirstSub && !rocketmqProperties.isEnableHistoryConsumer()) {
             msgs = msgs.stream()
                     .filter(item -> startTime - item.getBornTimestamp() < 0)
                     .collect(Collectors.toList());
