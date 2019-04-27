@@ -1,12 +1,13 @@
-package com.ddmh.config;
+package com.ddmh.configuration;
 
-import com.ddmh.mq.RocketmqEvent;
+import com.ddmh.model.RocketmqEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.*;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.TransactionMQProducer;
+import org.apache.rocketmq.common.ThreadFactoryImpl;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 
@@ -113,8 +115,9 @@ public class RocketmqConfiguration {
      */
     @Bean
     public DefaultMQPushConsumer pushConsumer() throws MQClientException {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(
-                rocketmqProperties.getConsumerGroupName());
+
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(rocketmqProperties.getConsumerGroupName());
+
         consumer.setNamesrvAddr(rocketmqProperties.getNameSrvAddr());
         consumer.setInstanceName(rocketmqProperties.getConsumerInstanceName());
 
@@ -122,6 +125,7 @@ public class RocketmqConfiguration {
         if (rocketmqProperties.isConsumerBroadcasting()) {
             consumer.setMessageModel(MessageModel.BROADCASTING);
         }
+
         //设置批量消费
         consumer.setConsumeMessageBatchMaxSize(rocketmqProperties
                 .getConsumerBatchMaxSize() == 0 ? 1 : rocketmqProperties
@@ -142,8 +146,9 @@ public class RocketmqConfiguration {
                     try {
                         context.setAutoCommit(true);
                         messageExtList = filterMessage(messageExtList);
-                        if (messageExtList.size() == 0)
+                        if (messageExtList.size() == 0) {
                             return ConsumeOrderlyStatus.SUCCESS;
+                        }
                         publisher.publishEvent(new RocketmqEvent(messageExtList, consumer));
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -165,8 +170,9 @@ public class RocketmqConfiguration {
                     try {
                         //过滤消息
                         messageExtList = filterMessage(messageExtList);
-                        if (messageExtList.size() == 0)
+                        if (messageExtList.size() == 0){
                             return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+                        }
                         publisher.publishEvent(new RocketmqEvent(messageExtList, consumer));
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -177,32 +183,32 @@ public class RocketmqConfiguration {
                 }
             });
         }
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(5000);
 
-                    try {
-                        consumer.start();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    log.info("rocketmq consumer server is starting....");
-                } catch (InterruptedException e) {
+        ThreadFactory namedThreadFactory = new ThreadFactoryImpl("tlr-model-thread-");
+        ExecutorService executorService = new ThreadPoolExecutor(1 , 1, 0L,
+                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+
+        executorService.execute(() -> {
+            try {
+                Thread.sleep(5000);
+                try {
+                    consumer.start();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
+                log.info("rocketmq consumer server is starting....");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-
-        }).start();
+        });
 
         return consumer;
     }
 
     /**
      * 消息过滤
-     * @param msgs
-     * @return
+     * @param msgs 待过滤的消息列表
+     * @return 返回过滤后的消息列表
      */
     private List<MessageExt> filterMessage(List<MessageExt> msgs) {
         if (isFirstSub && !rocketmqProperties.isEnableHistoryConsumer()) {

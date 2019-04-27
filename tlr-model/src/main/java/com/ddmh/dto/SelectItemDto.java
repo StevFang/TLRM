@@ -19,6 +19,8 @@ import java.io.Serializable;
 @Alias("SelectItemDto")
 public class SelectItemDto implements Serializable {
 
+    private static final long serialVersionUID = 6400406484437182147L;
+
     private String label;
 
     private String value;

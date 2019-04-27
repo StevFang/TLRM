@@ -30,7 +30,7 @@ public class ProducerController {
         for(int i=0;i<100;i++){
             SelectItemDto selectItemDto  = SelectItemDto.builder().label("xxx").value("111").build();
             String json = JSON.toJSONString(selectItemDto);
-            Message msg = new Message("user-topic","white",json.getBytes());
+            Message msg = new Message("user-topic","white", json.getBytes());
             try {
                 SendResult result = defaultProducer.send(msg);
                 System.out.println("消息id:"+result.getMsgId()+":"+","+"发送状态:"+result.getSendStatus());

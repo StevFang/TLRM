@@ -1,4 +1,4 @@
-package com.ddmh.config;
+package com.ddmh.configuration;
 
 import lombok.Getter;
 import lombok.Setter;

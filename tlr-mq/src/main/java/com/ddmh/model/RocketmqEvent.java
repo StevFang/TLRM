@@ -1,4 +1,4 @@
-package com.ddmh.mq;
+package com.ddmh.model;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.common.message.MessageExt;

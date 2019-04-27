@@ -10,7 +10,8 @@
 		<module>tlr-api</module>
 		<module>tlr-cdc</module>
 		<module>tlr-web</module>
-	</modules>
+        <module>tlr-mq</module>
+    </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -78,12 +79,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.rocketmq</groupId>
-			<artifactId>rocketmq-client</artifactId>
-			<version>4.1.0-incubating</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
@@ -91,13 +86,13 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.6.11</version>
+			<version>1.8.9</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.6.11</version>
+			<version>1.8.9</version>
 		</dependency>
 
 		<dependency>
