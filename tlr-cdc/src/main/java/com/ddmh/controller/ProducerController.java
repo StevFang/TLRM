@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * 消息生产controller
+ *
+ * @author fbin
+ */
 @RestController
 public class ProducerController {
 

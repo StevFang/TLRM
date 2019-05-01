@@ -30,4 +30,5 @@ public class WebApplication extends WebMvcConfigurerAdapter {
 		argumentResolvers.add(new RequestSingleParamHandlerMethodArgumentResolver());
 		super.addArgumentResolvers(argumentResolvers);
 	}
+
 }

@@ -15,6 +15,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -34,6 +35,9 @@ import java.util.stream.Collectors;
 @Slf4j
 public class RocketmqConfiguration {
 
+    /**
+     * rocketmq 配置
+     */
     @Autowired
     private RocketmqProperties rocketmqProperties;
 
@@ -139,52 +143,25 @@ public class RocketmqConfiguration {
 
         // 顺序消费
         if (rocketmqProperties.isEnableOrderConsumer()) {
-            consumer.registerMessageListener(new MessageListenerOrderly() {
-                @Override
-                public ConsumeOrderlyStatus consumeMessage(
-                        List<MessageExt> messageExtList, ConsumeOrderlyContext context) {
-                    try {
-                        context.setAutoCommit(true);
-                        messageExtList = filterMessage(messageExtList);
-                        if (messageExtList.size() == 0) {
-                            return ConsumeOrderlyStatus.SUCCESS;
-                        }
-                        publisher.publishEvent(new RocketmqEvent(messageExtList, consumer));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
-                    }
-                    return ConsumeOrderlyStatus.SUCCESS;
-                }
-            });
+            registryOrder(consumer);
         }
         // 并发消费
         else {
-
-            consumer.registerMessageListener(new MessageListenerConcurrently() {
-
-                @Override
-                public ConsumeConcurrentlyStatus consumeMessage(
-                        List<MessageExt> messageExtList,
-                        ConsumeConcurrentlyContext context) {
-                    try {
-                        //过滤消息
-                        messageExtList = filterMessage(messageExtList);
-                        if (messageExtList.size() == 0){
-                            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-                        }
-                        publisher.publishEvent(new RocketmqEvent(messageExtList, consumer));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        return ConsumeConcurrentlyStatus.RECONSUME_LATER;
-                    }
-
-                    return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-                }
-            });
+            registryConcurrence(consumer);
         }
 
-        ThreadFactory namedThreadFactory = new ThreadFactoryImpl("tlr-model-thread-");
+        startConsumer(consumer);
+
+        return consumer;
+    }
+
+    /**
+     * 利用线程池启动消费者
+     *
+     * @param consumer
+     */
+    private void startConsumer(DefaultMQPushConsumer consumer) {
+        ThreadFactory namedThreadFactory = new ThreadFactoryImpl("tlr-thread-");
         ExecutorService executorService = new ThreadPoolExecutor(1 , 1, 0L,
                 TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
 
@@ -201,25 +178,68 @@ public class RocketmqConfiguration {
                 e.printStackTrace();
             }
         });
+    }
 
-        return consumer;
+    /**
+     * 注册并发消费监听
+     *
+     * @param consumer
+     */
+    private void registryConcurrence(DefaultMQPushConsumer consumer) {
+        consumer.registerMessageListener((List<MessageExt> messageExtList, ConsumeConcurrentlyContext context) -> {
+            try {
+                messageExtList = filterMessage(messageExtList);
+                if (CollectionUtils.isEmpty(messageExtList)){
+                    return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+                }
+                publisher.publishEvent(new RocketmqEvent(messageExtList, consumer));
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ConsumeConcurrentlyStatus.RECONSUME_LATER;
+            }
+            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
+        });
+    }
+
+    /**
+     * 注册顺序消费监听
+     *
+     * @param consumer
+     */
+    private void registryOrder(DefaultMQPushConsumer consumer) {
+        consumer.registerMessageListener((List<MessageExt> messageExtList, ConsumeOrderlyContext context) -> {
+            try {
+                context.setAutoCommit(true);
+                messageExtList = filterMessage(messageExtList);
+                if (CollectionUtils.isEmpty(messageExtList)) {
+                    return ConsumeOrderlyStatus.SUCCESS;
+                }
+                publisher.publishEvent(new RocketmqEvent(messageExtList, consumer));
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
+            }
+            return ConsumeOrderlyStatus.SUCCESS;
+        });
     }
 
     /**
      * 消息过滤
-     * @param msgs 待过滤的消息列表
+     *
+     * @param messageExtList 待过滤的消息列表
+     *
      * @return 返回过滤后的消息列表
      */
-    private List<MessageExt> filterMessage(List<MessageExt> msgs) {
+    private List<MessageExt> filterMessage(List<MessageExt> messageExtList) {
         if (isFirstSub && !rocketmqProperties.isEnableHistoryConsumer()) {
-            msgs = msgs.stream()
+            messageExtList = messageExtList.stream()
                     .filter(item -> startTime - item.getBornTimestamp() < 0)
                     .collect(Collectors.toList());
         }
-        if (isFirstSub && msgs.size() > 0) {
+        if (isFirstSub && messageExtList.size() > 0) {
             isFirstSub = false;
         }
-        return msgs;
+        return messageExtList;
     }
 
 }

@@ -16,6 +16,13 @@
     <url>http://www.example.com</url>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.ddmh</groupId>
+            <artifactId>tlr-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
