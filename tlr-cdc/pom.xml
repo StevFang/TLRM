@@ -39,18 +39,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.debezium/debezium-core -->
+        <!-- https://mvnrepository.com/artifact/com.flipkart/open-replicator -->
         <dependency>
-            <groupId>io.debezium</groupId>
-            <artifactId>debezium-core</artifactId>
-            <version>0.9.4.Final</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.debezium/debezium-connector-mysql -->
-        <dependency>
-            <groupId>io.debezium</groupId>
-            <artifactId>debezium-connector-mysql</artifactId>
-            <version>0.9.4.Final</version>
+            <groupId>com.flipkart</groupId>
+            <artifactId>open-replicator</artifactId>
+            <version>1.0.8</version>
         </dependency>
 
     </dependencies>
